@@ -1,6 +1,8 @@
+import styles from './UI.module.scss'
+const { closeBtn } = styles
 const CloseButton = () => {
 	return (
-		<button className='close-btn'>
+		<button className={closeBtn}>
 			<img width={11} height={11} src='img/close-btn.svg' alt='plus icon' />
 		</button>
 	)

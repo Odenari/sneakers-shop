@@ -1,0 +1,22 @@
+.header {
+	border-bottom: 1px solid #eaeaea;
+}
+
+.headerPrice {
+	opacity: 0.95;
+	font-weight: 600;
+	line-height: 17px;
+	color: #5c5c5c;
+}
+
+.headerInfo {
+	h3,
+	p {
+		margin: 0;
+		padding: 0;
+	}
+	p {
+		opacity: 0.5;
+		font-weight: 600;
+	}
+}

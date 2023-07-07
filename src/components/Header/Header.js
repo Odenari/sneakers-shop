@@ -1,6 +1,9 @@
+import HeaderStyles from './Header.module.scss'
+const { header, headerPrice, headerInfo } = HeaderStyles
+
 const Header = () => {
 	return (
-		<header className='d-flex justify-between align-center p-40'>
+		<header className={`${header} d-flex justify-between align-center p-40`}>
 			<div className='d-flex align-center'>
 				<img
 					className='mr-20'
@@ -9,7 +12,7 @@ const Header = () => {
 					src='/img/logo.png'
 					alt='Shop logo'
 				/>
-				<div className='headerInfo'>
+				<div className={headerInfo}>
 					<h3 className='text-uppercase title'>React Sneakers</h3>
 					<p>Магазин лучших кроссовок</p>
 				</div>
@@ -17,7 +20,7 @@ const Header = () => {
 			<ul className='d-flex'>
 				<li className='mr-25'>
 					<img className='mr-10' src='/img/cart.svg' alt='cart icon' />
-					<span className='header-price'>1205 руб.</span>
+					<span className={headerPrice}>1205 руб.</span>
 				</li>
 				<li className='mr-25'>
 					<img src='img/heart.svg' alt='heart icon' />

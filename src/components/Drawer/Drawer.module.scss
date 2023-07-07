@@ -1,0 +1,48 @@
+.overlay {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background-color: rgba($color: #000000, $alpha: 0.5);
+}
+
+.drawer {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	right: 0;
+	height: 100%;
+	// width: 385px;
+	padding: 30px;
+	background: #ffffff;
+	box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+	h2 {
+		margin: 0;
+	}
+	.items {
+		flex: 1;
+		overflow-y: auto;
+		overflow-x: hidden;
+		margin-bottom: 40px;
+	}
+}
+
+.cartTotal {
+	ul {
+		margin-bottom: 30px;
+	}
+	li {
+		margin-bottom: 20px;
+	}
+}
+.dashed {
+	position: relative;
+	margin: 0 10px;
+	top: 14px;
+	flex: 1;
+	height: 1px;
+	width: 1px;
+	border-bottom: 1px dashed #e2e2e2;
+}

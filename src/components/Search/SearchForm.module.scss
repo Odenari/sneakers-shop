@@ -1,0 +1,15 @@
+.searchWrapper {
+	min-height: 45px;
+	border: 1px solid #f3f3f3;
+	border-radius: 10px;
+	input {
+		font-size: 16px;
+		opacity: 0.6;
+		padding: 10px;
+		height: 100%;
+		border: none;
+	}
+	.searchIcon {
+		margin-left: 15px;
+	}
+}

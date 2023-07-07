@@ -1,10 +1,13 @@
+import CartItemStyles from './CartItem.module.scss'
 import CloseButton from '../../UI/CloseButton'
+
+const { cartItem, cartItemImg } = CartItemStyles
 
 const CartItem = () => {
 	return (
-		<div className='cart-item'>
+		<div className={cartItem}>
 			<div
-				className='cart-item-img'
+				className={cartItemImg}
 				style={{
 					backgroundImage: 'url(img/sneakers/1.jpg)',
 				}}

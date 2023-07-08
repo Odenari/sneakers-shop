@@ -5,7 +5,7 @@ const GreenButton = () => {
 	return (
 		<button className={greenButton}>
 			Оформить заказ
-			<img src='/img/arrow.svg' alt='Arrow' />
+			<img src='/img/icons/arrow.svg' alt='Arrow' />
 		</button>
 	)
 }

@@ -1,26 +1,25 @@
 import DrawerStyles from './Drawer.module.scss'
-import CloseButton from '../UI/CloseButton'
-import GreenButton from '../UI/GreenButton'
+
 import CartItem from './CartItem/CartItem'
 
-const { overlay, drawer, items, cartTotal, dashed } = DrawerStyles
-const Drawer = () => {
+import CloseButton from '../UI/CloseButton'
+import GreenButton from '../UI/GreenButton'
+
+import itemsContext from '../../App'
+
+const { overlay, drawer, itemsStyle, cartTotal, dashed } = DrawerStyles
+const Drawer = ({ onClose, items = [] }) => {
 	return (
-		<div
-			className={overlay}
-			style={{
-				// display: 'block',
-				visibility: 'hidden',
-			}}
-		>
+		<div className={overlay}>
 			<div className={drawer}>
-				<div className='wd-flex justify-between'>
+				<div className='d-flex justify-between'>
 					<h2 className='mb-30'>Корзина</h2>
-					<CloseButton />
+					<CloseButton onClose={onClose} />
 				</div>
-				<div className={items}>
-					<CartItem />
-					<CartItem />
+				<div className={itemsStyle}>
+					{items.map(item => (
+						<CartItem title={item.title} path={item.path} price={item.price} />
+					))}
 				</div>
 				<div className={cartTotal}>
 					<ul>

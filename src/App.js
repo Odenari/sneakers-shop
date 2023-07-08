@@ -1,31 +1,37 @@
+//components
 import Header from './components/Header/Header'
 import Card from './components/Card/Card'
 import Drawer from './components/Drawer/Drawer'
-
-//utilities
-import uniqid from 'uniqid'
 import SearchForm from './components/Search/SearchForm'
 
-const arr = [
-	{
-		path: '/img/sneakers/1.jpg',
-		name: 'Мужские Кроссовки Nike Blazer Mid Suede',
-		price: 12999,
-		key: uniqid(),
-	},
-	{
-		path: '/img/sneakers/2.png',
-		name: 'Мужские Кроссовки Nike Air Max 270',
-		price: 14600,
-		key: uniqid(),
-	},
-]
+//utilities
+// import { data } from './services/service' // this is the axios variant of getting data
+import uniqid from 'uniqid'
+
+//hooks
+import { useContext, useEffect, useState } from 'react'
 
 const App = () => {
+	let [cartFlag, setCartFlag] = useState(false)
+	const [products, setProducts] = useState([])
+	const [cartItems, setCartItems] = useState([])
+
+	const itemsContext = useContext(cartItems)
+
+	useEffect(() => {
+		fetch('https://64a86cf6dca581464b85b8df.mockapi.io/sneakers/products')
+			.then(response => response.json())
+			.then(data => setProducts(data))
+	}, [])
+
+	const addToCart = newItem => {
+		setCartItems([...cartItems, newItem])
+	}
+
 	return (
 		<div className='wrapper clear'>
-			<Drawer />
-			<Header />
+			{cartFlag && <Drawer items={[...cartItems]} onClose={setCartFlag} />}
+			<Header setFlag={setCartFlag} />
 			<main>
 				<div className='content p-40 '>
 					<div className='d-flex justify-between align-center mb-40'>
@@ -33,14 +39,14 @@ const App = () => {
 						<SearchForm />
 					</div>
 
-					<div className='goods d-flex'>
-						{arr.map(card => (
+					<div className='goods d-flex justify-center'>
+						{products.map(card => (
 							<Card
-								key={card.key}
+								onPlus={() => addToCart(card)}
 								path={card.path}
-								name={card.name}
+								title={card.title}
 								price={card.price}
-								click={() => console.log(card)}
+								key={uniqid()}
 							/>
 						))}
 					</div>

@@ -19,16 +19,17 @@
 
 .plusBtn,
 .closeBtn {
-	min-width: 32px;
+	width: 32px;
 	height: 32px;
+	aspect-ratio: 1/1;
 	cursor: pointer;
 	border-radius: 8px;
 	background-color: #fff;
-	border: 1px solid #e7e7e7;
 	transition: opacity 150ms ease-in-out;
 }
 
 .closeBtn {
+	border: 1px solid #e7e7e7;
 	opacity: 0.4;
 	&:hover {
 		opacity: 1;

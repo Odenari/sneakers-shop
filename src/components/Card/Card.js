@@ -4,18 +4,18 @@ import styles from './Card.module.scss'
 import PlusButton from '../UI/PlusButton'
 import ToWishListHeart from '../UI/ToWishListHeart'
 
-function Card(props) {
+function Card({ title, path, price, onPlus, onFavorite }) {
 	return (
-		<div className={styles.card} onClick={props.click}>
-			<ToWishListHeart />
-			<img width={135} height={112} src={props.path} alt='sneaker example' />
-			<p>{props.name}</p>
+		<div className={styles.card}>
+			<ToWishListHeart onFavorite={onFavorite} />
+			<img className={styles.sneakersImg} src={path} alt='sneakers example' />
+			<p className={styles.descr}>Мужские Кроссовки ${title}</p>
 			<div className='d-flex justify-between align-center'>
 				<div className='d-flex flex-column'>
-					<span>Цена: </span>
-					<b>{props.price} руб.</b>
+					<span className={styles.price}>Цена: </span>
+					<b>{price} руб.</b>
 				</div>
-				<PlusButton />
+				<PlusButton onPlus={onPlus} />
 			</div>
 		</div>
 	)

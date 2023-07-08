@@ -1,10 +1,38 @@
+import { useState } from 'react'
 import styles from './UI.module.scss'
+
 const { plusBtn } = styles
-const PlusButton = () => {
+const icons = {
+	plusIcon: 'img/icons/plusBtn.svg',
+	addedIcon: 'img/icons/checked.svg',
+}
+
+const PlusButton = ({ onPlus }) => {
+	let altField = 'no icon'
+	let [isAdded, setIsAdded] = useState(false)
+
 	return (
-		<button className={plusBtn}>
-			<img width={11} height={11} src='img/plus.svg' alt='plus icon' />
-		</button>
+		<>
+			<img
+				src={isAdded ? icons.addedIcon : icons.plusIcon}
+				alt={altField}
+				className={plusBtn}
+				onClick={() => {
+					console.log('before: ' + isAdded)
+					onPlus()
+					setIsAdded(prevFlagValue => {
+						console.log(
+							'Flag must be changed from : ' +
+								prevFlagValue +
+								' to: ' +
+								!prevFlagValue
+						)
+						return !!prevFlagValue
+					})
+					console.log('after: ' + isAdded)
+				}}
+			/>
+		</>
 	)
 }
 

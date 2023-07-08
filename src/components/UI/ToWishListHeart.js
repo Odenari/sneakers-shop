@@ -3,7 +3,7 @@ const { favorite, unliked } = styles
 const ToWishListHeart = () => {
 	return (
 		<div className={favorite}>
-			<img className={unliked} src='img/heart.svg' alt='unliked' />
+			<img className={unliked} src='img/icons/heart.svg' alt='unliked' />
 		</div>
 	)
 }

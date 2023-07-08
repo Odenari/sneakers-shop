@@ -1,11 +1,12 @@
 body {
-	margin: 0;
 	-webkit-font-smoothing: antialised;
 	-moz-osx-font-smoothing: grayscale;
 	background-color: #e7f6ff;
 }
 
 * {
+	padding: 0;
+	margin: 0;
 	font-family: 'Inter', sans-serif, system-ui;
 }
 
@@ -24,6 +25,5 @@ body {
 }
 
 .goods {
-	// flex: 1;
 	flex-wrap: wrap;
 }

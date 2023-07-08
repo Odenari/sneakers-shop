@@ -1,0 +1,42 @@
+[
+	{
+		"path": "/img/sneakers/1.png",
+		"title": "Nike Blazer Mid Suede",
+		"price": "8299"
+	},
+	{
+		"path": "/img/sneakers/2.png",
+		"title": "Nike Air Max 270",
+		"price": "14600"
+	},
+	{
+		"path": "/img/sneakers/3.png",
+		"title": "Nike Blazer Mid Suede White",
+		"price": "7666"
+	},
+	{
+		"path": "/img/sneakers/4.png",
+		"title": "Puma X Aka Boku Future Rider",
+		"price": "8600"
+	},
+	{
+		"path": "/img/sneakers/5.png",
+		"title": "Under Armour Curry 8",
+		"price": "15999"
+	},
+	{
+		"path": "/img/sneakers/6.png",
+		"title": "Nike Kyrie 77",
+		"price": "10600"
+	},
+	{
+		"path": "/img/sneakers/1.jpg",
+		"title": "Nike Lebron XVIII",
+		"price": "112999"
+	},
+	{
+		"path": "/img/sneakers/2.png",
+		"title": "Nike Air Max 270",
+		"price": "14600"
+	}
+]

@@ -1,4 +1,6 @@
 .card {
+	display: flex;
+	flex-direction: column;
 	position: relative;
 	width: 220px;
 	padding: 20px;
@@ -21,5 +23,15 @@
 	}
 	b {
 		font-size: 14px;
+	}
+	.sneakersImg {
+		margin-left: 15px;
+		height: 80%;
+		width: 80%;
+		object-fit: contain;
+	}
+	.descr,
+	.price {
+		margin: 5px 0;
 	}
 }

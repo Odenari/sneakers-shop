@@ -25,12 +25,29 @@ const App = () => {
 	}, [])
 
 	const addToCart = newItem => {
-		setCartItems([...cartItems, newItem])
+		if (cartItems.includes(newItem)) return null
+		setCartItems(prevItems => [...prevItems, newItem])
+	}
+
+	const removeCartItem = (cartObj, flag = true) => {
+		if (!flag) {
+			setCartItems(
+				cartItems.filter(
+					item => (item.title && item.path) !== (cartObj.title && cartObj.path)
+				)
+			)
+		}
 	}
 
 	return (
 		<div className='wrapper clear'>
-			{cartFlag && <Drawer items={[...cartItems]} onClose={setCartFlag} />}
+			{cartFlag && (
+				<Drawer
+					items={cartItems}
+					onClose={setCartFlag}
+					onRemove={(cartObj, flag) => removeCartItem(cartObj, flag)}
+				/>
+			)}
 			<Header setFlag={setCartFlag} />
 			<main>
 				<div className='content p-40 '>

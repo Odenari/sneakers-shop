@@ -1,11 +1,11 @@
 import styles from './UI.module.scss'
 const { closeBtn } = styles
-const CloseButton = ({ onClose }) => {
-	const handleClose = () => {
-		onClose(false)
-	}
+const CloseButton = ({ remover }) => {
+	// const handleClose = () => {
+	// 	onClose(false)
+	// }
 	return (
-		<button onClick={handleClose} className={closeBtn}>
+		<button onClick={() => remover(false)} className={closeBtn}>
 			<img
 				width={11}
 				height={11}

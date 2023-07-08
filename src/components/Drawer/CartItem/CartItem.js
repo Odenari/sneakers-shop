@@ -2,7 +2,7 @@ import CartItemStyles from './CartItem.module.scss'
 import CloseButton from '../../UI/CloseButton'
 
 const { cartItem, cartItemImg } = CartItemStyles
-const CartItem = ({ title, price, path }) => {
+const CartItem = ({ title, price, path, remove, ...props }) => {
 	return (
 		<div className={cartItem}>
 			<div
@@ -16,7 +16,7 @@ const CartItem = ({ title, price, path }) => {
 				<span>{title}</span>
 				<b>{price} руб.</b>
 			</div>
-			<CloseButton />
+			<CloseButton remover={flag => remove({ title, price, path }, flag)} />
 		</div>
 	)
 }

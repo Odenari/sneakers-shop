@@ -19,7 +19,7 @@ const PlusButton = ({ onPlus }) => {
 				className={plusBtn}
 				onClick={() => {
 					console.log('before: ' + isAdded)
-					onPlus()
+					onPlus() //calling method to
 					setIsAdded(prevFlagValue => {
 						console.log(
 							'Flag must be changed from : ' +

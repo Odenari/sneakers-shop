@@ -1,4 +1,5 @@
 import DrawerStyles from './Drawer.module.scss'
+import stylesUI from '../UI/UI.module.scss'
 
 import CartItem from './CartItem/CartItem'
 import CloseButton from '../UI/CloseButton'
@@ -6,10 +7,10 @@ import GreenButton from '../UI/GreenButton'
 
 import uniqid from 'uniqid'
 
-// import itemsContext from '../../App'
-const { overlay, drawer, itemsStyle, cartTotal, dashed } = DrawerStyles
+const { overlay, drawer, itemsStyle, cartTotal, dashed, cartEmpty } =
+	DrawerStyles
 
-const Drawer = ({ onClose, items = [], onRemove }) => {
+const Drawer = ({ onClose, inCart = [], onRemove }) => {
 	return (
 		<div className={overlay}>
 			<div className={drawer}>
@@ -18,15 +19,36 @@ const Drawer = ({ onClose, items = [], onRemove }) => {
 					<CloseButton remover={onClose} />
 				</div>
 				<div className={itemsStyle}>
-					{items.map(item => (
-						<CartItem
-							title={item.title}
-							path={item.path}
-							price={item.price}
-							key={uniqid()}
-							remove={(cartObj, flag) => onRemove(cartObj, flag)}
-						/>
-					))}
+					{!inCart.length ? (
+						<div className={cartEmpty}>
+							<img
+								width={120}
+								height={120}
+								src='/img/icons/emptyBox.png'
+								alt='Empty box'
+							/>
+							<h2>Корзина пустая</h2>
+							<p className='opacity-6'>
+								Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
+							</p>
+							<GreenButton remover={onClose} classMod={stylesUI.greenButtonMod}>
+								Вернуться назад
+							</GreenButton>
+						</div>
+					) : (
+						inCart.map(data => (
+							<CartItem
+								id={data.item.id}
+								title={data.item.title}
+								path={data.item.path}
+								price={data.item.price}
+								key={uniqid()}
+								remove={() => {
+									onRemove(data.id)
+								}}
+							/>
+						))
+					)}
 				</div>
 				<div className={cartTotal}>
 					<ul>
@@ -42,7 +64,7 @@ const Drawer = ({ onClose, items = [], onRemove }) => {
 						</li>
 					</ul>
 				</div>
-				<GreenButton />
+				<GreenButton>Оформить заказ</GreenButton>
 			</div>
 		</div>
 	)

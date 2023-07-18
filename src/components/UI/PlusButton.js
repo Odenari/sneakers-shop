@@ -3,35 +3,23 @@ import styles from './UI.module.scss'
 
 const { plusBtn } = styles
 const icons = {
-	plusIcon: 'img/icons/plusBtn.svg',
-	addedIcon: 'img/icons/checked.svg',
+	plus: 'img/icons/plusBtn.svg',
+	added: 'img/icons/checked.svg',
 }
-
-const PlusButton = ({ onPlus }) => {
-	let altField = 'no icon'
-	let [isAdded, setIsAdded] = useState(false)
-
+const PlusButton = ({ onPlus, flag }) => {
+	let [iconFlag, setIconFlag] = useState(flag)
 	return (
 		<>
-			<img
-				src={isAdded ? icons.addedIcon : icons.plusIcon}
-				alt={altField}
-				className={plusBtn}
-				onClick={() => {
-					console.log('before: ' + isAdded)
-					onPlus() //calling method to
-					setIsAdded(prevFlagValue => {
-						console.log(
-							'Flag must be changed from : ' +
-								prevFlagValue +
-								' to: ' +
-								!prevFlagValue
-						)
-						return !!prevFlagValue
-					})
-					console.log('after: ' + isAdded)
-				}}
-			/>
+			<button className={plusBtn}>
+				<img
+					onClick={() => {
+						onPlus()
+						setIconFlag(prev => !prev)
+					}}
+					src={iconFlag ? icons.added : icons.plus}
+					alt='button icon'
+				/>
+			</button>
 		</>
 	)
 }

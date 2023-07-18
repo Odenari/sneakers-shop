@@ -29,7 +29,7 @@ const Header = ({ setFlag }) => {
 					</span>
 				</li>
 				<li className='mr-25'>
-					<img src='img/icons/heart.svg' alt='heart icon' />
+					<img src='img/icons/favProducts.svg' alt='heart icon' />
 				</li>
 				<li className='mr-25'>
 					<img src='img/icons/user.svg' alt='user icon' />

@@ -13,3 +13,22 @@
 		margin-left: 15px;
 	}
 }
+.clear {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 28px;
+	height: 28px;
+	border: 1px solid #f3f3f3;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-right: 15px;
+	transition: transform 100ms ease-in-out;
+}
+.clear:hover {
+	transform: translateY(-5px);
+}
+
+.clear:active {
+	transform: translateY(3px);
+}

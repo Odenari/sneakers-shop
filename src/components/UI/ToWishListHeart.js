@@ -1,8 +1,16 @@
-import styles from './UI.module.scss'
-const { favorite, unliked } = styles
-const ToWishListHeart = ({ isFavorite, setIsFavorite }) => {
+import styles from './UI.module.scss';
+const { favorite, unliked } = styles;
+const ToWishListHeart = ({ isFavorite, addToFavList }) => {
 	return (
-		<div onClick={() => setIsFavorite(prev => !prev)} className={favorite}>
+		<div
+			onClick={() => {
+				if (isFavorite) {
+					return addToFavList(false);
+				}
+				addToFavList();
+			}}
+			className={favorite}
+		>
 			<img
 				width={32}
 				height={32}
@@ -15,7 +23,7 @@ const ToWishListHeart = ({ isFavorite, setIsFavorite }) => {
 				alt='To favorite button'
 			/>
 		</div>
-	)
-}
+	);
+};
 
-export default ToWishListHeart
+export default ToWishListHeart;

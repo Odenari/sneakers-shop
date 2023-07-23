@@ -16,7 +16,7 @@ const PlusButton = ({ onPlus, flag }) => {
 						onPlus()
 						setIconFlag(prev => !prev)
 					}}
-					src={iconFlag ? icons.added : icons.plus}
+					src={iconFlag ? 'img/icons/checked.svg' : 'img/icons/plusBtn.svg'}
 					alt='button icon'
 				/>
 			</button>

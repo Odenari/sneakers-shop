@@ -1,22 +1,22 @@
 //components
 import Header from './components/Header/Header';
-import Card from './components/Card/Card';
+import Home from './pages/Home.jsx';
 import Drawer from './components/Drawer/Drawer';
-import SearchForm from './components/Search/SearchForm';
-import { InFavorite } from './pages/favorite/InFavorite';
+
 //utilities
 import uniqid from 'uniqid';
 import axios from 'axios';
-
-//hooks
 import { postData, postToFavorites } from './services/service';
 import { useEffect, useMemo, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { InFavorite } from './pages/favorite/InFavorite';
 
-const App = () => {
+export const App = () => {
 	let [cartFlag, setCartFlag] = useState(false);
+	let [toFavorites, setToFavorites] = useState(false);
 
-	const [products, setProducts] = useState([]);
 	const [cartItems, setCartItems] = useState([]);
+	const [products, setProducts] = useState([]);
 	const [favProducts, setFavProducts] = useState([]);
 
 	useEffect(() => {
@@ -117,44 +117,24 @@ const App = () => {
 					onRemove={id => removeCartItem(id)}
 				/>
 			)}
-			<Header setFlag={setCartFlag} />
-			<main>
-				<div className='search-block content p-40 '>
-					<div className='d-flex justify-between align-center mb-40'>
-						{searchValue ? (
-							<h2>Поиск по запросу: {searchValue}</h2>
-						) : (
-							<h1>Все кроссовки</h1>
-						)}
-						<SearchForm
-							flag={searchValue}
-							productName={searchValue}
-							clearValue={() => setSearchValue('')}
-							updateSearchValue={e => setSearchValue(e.target.value)}
-						/>
-					</div>
-
-					<div className='goods d-flex justify-center'>
-						{filteredProducts.map(fProduct => (
-							<Card
-								data={fProduct}
-								onPlus={() => addToCart(fProduct)}
-								onFav={favProduct => addToFav(favProduct)}
-								onRemove={product => removeFromFavorites(product)}
-								key={uniqid()}
-								isFavorite={
-									favProducts.findIndex(fav => fav.id === fProduct.id) >= 0
-								}
+			<Header setFlag={setCartFlag} setToFavorites={setToFavorites} />
+			<main className='mb-100'>
+				<Routes>
+					<Route
+						path='/'
+						element={
+							<Home
+								searchValue={searchValue}
+								setSearchValue={setSearchValue}
+								filteredProducts={filteredProducts}
+								addToCart={addToCart}
+								addToFav={addToFav}
+								removeFromFavorites={removeFromFavorites}
+								favProducts={favProducts}
 							/>
-						))}
-					</div>
-					<div>
-						<InFavorite
-							data={favProducts}
-							onRemove={product => removeFromFavorites(product)}
-						/>
-					</div>
-				</div>
+						}
+					/>
+				</Routes>
 			</main>
 		</div>
 	);

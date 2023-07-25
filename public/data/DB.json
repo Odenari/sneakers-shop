@@ -1,11 +1,3 @@
 {
-  "listOfFavorites": [
-    {
-      "title": "Nike Blazer Mid Suede",
-      "path": "/img/sneakers/1.png",
-      "price": "8299",
-      "id": "1",
-      "isAdded": false
-    }
-  ]
+  "listOfFavorites": []
 }

@@ -1,4 +1,5 @@
 import styles from './UI.module.scss';
+
 const { favorite, unliked } = styles;
 const ToWishListHeart = ({ isFavorite, addToFavList }) => {
 	return (
@@ -17,8 +18,8 @@ const ToWishListHeart = ({ isFavorite, addToFavList }) => {
 				className={unliked}
 				src={
 					isFavorite
-						? 'img/icons/favoriteHeart.svg'
-						: 'img/icons/notInFavorite.svg'
+						? '/img/icons/favoriteHeart.svg'
+						: '/img/icons/notInFavorite.svg'
 				}
 				alt='To favorite button'
 			/>

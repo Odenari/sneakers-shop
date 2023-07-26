@@ -7,8 +7,9 @@ const ToWishListHeart = ({ isFavorite, addToFavList }) => {
 			onClick={() => {
 				if (isFavorite) {
 					return addToFavList(false);
+				} else {
+					addToFavList();
 				}
-				addToFavList();
 			}}
 			className={favorite}
 		>

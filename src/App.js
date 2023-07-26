@@ -9,7 +9,10 @@ import axios from 'axios';
 import { postData, postToFavorites } from './services/service';
 import { useEffect, useMemo, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { InFavorite } from './pages/favorite/InFavorite';
+
+//Pages
+import Error from './components/Error/Error';
+import InFavorite from './pages/InFavorite.jsx';
 
 export const App = () => {
 	let [cartFlag, setCartFlag] = useState(false);
@@ -18,39 +21,49 @@ export const App = () => {
 	const [cartItems, setCartItems] = useState([]);
 	const [products, setProducts] = useState([]);
 	const [favProducts, setFavProducts] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		const dataRequest = fetch(
-			'https://64a86cf6dca581464b85b8df.mockapi.io/sneakers/products'
-		)
-			.then(response => response.json())
-			.then(data => {
-				return data;
+		async function fetchData() {
+			const dataRequest = await fetch(
+				'https://64a86cf6dca581464b85b8df.mockapi.io/sneakers/products'
+			)
+				.then(response => response.json())
+				.then(data => {
+					return data;
+				});
+
+			const cartRequest = await axios
+				.get('https://64a86cf6dca581464b85b8df.mockapi.io/sneakers/cart')
+				.then(res => {
+					setCartItems(res.data);
+					return res.data;
+				});
+
+			const favRequest = await axios
+				.get('http://localhost:5005/listOfFavorites')
+				.then(res => {
+					setFavProducts(res.data);
+					return res.data;
+				});
+
+			Promise.all([dataRequest, cartRequest]).then(([products, cartItems]) => {
+				setProducts(
+					products.map(product => ({
+						...product,
+						isAdded:
+							cartItems.findIndex(cartItem => {
+								return cartItem.id === product.id;
+							}) >= 0,
+					}))
+				);
 			});
+		}
 
-		const cartRequest = axios
-			.get('https://64a86cf6dca581464b85b8df.mockapi.io/sneakers/cart')
-			.then(res => {
-				setCartItems(res.data);
-				return res.data;
-			});
-
-		axios.get('http://localhost:5005/listOfFavorites').then(res => {
-			setFavProducts(res.data);
-			return res.data;
-		});
-
-		Promise.all([dataRequest, cartRequest]).then(([products, cartItems]) => {
-			setProducts(
-				products.map(product => ({
-					...product,
-					isAdded:
-						cartItems.findIndex(cartItem => {
-							return cartItem.id === product.id;
-						}) >= 0,
-				}))
-			);
-		});
+		setTimeout(() => {
+			fetchData();
+			setIsLoading(false);
+		}, 300);
 	}, []);
 
 	const addToCart = cartItem => {
@@ -104,7 +117,9 @@ export const App = () => {
 		if (!searchValue) {
 			return products;
 		} else {
-			return products.filter(card => card.title.includes(searchValue));
+			return products.filter(card =>
+				card.title.toLowerCase().includes(searchValue)
+			);
 		}
 	}, [products, searchValue]);
 
@@ -131,6 +146,7 @@ export const App = () => {
 								addToFav={addToFav}
 								removeFromFavorites={removeFromFavorites}
 								favProducts={favProducts}
+								isLoading={isLoading}
 							/>
 						}
 					/>
@@ -140,10 +156,13 @@ export const App = () => {
 							<InFavorite
 								data={favProducts}
 								addToCart={addToCart}
+								favProducts={favProducts}
+								isLoading={isLoading}
 								removeFromFavorites={removeFromFavorites}
 							/>
 						}
 					/>
+					<Route element={<Error />} />
 				</Routes>
 			</main>
 		</div>

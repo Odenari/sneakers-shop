@@ -10,10 +10,24 @@ export default function Home({
 	addToFav,
 	removeFromFavorites,
 	favProducts,
+	isLoading,
 }) {
+	const renderItems = () => {
+		return (isLoading ? [...Array(10)] : filteredProducts).map(fProduct => (
+			<Card
+				data={fProduct}
+				onPlus={() => addToCart(fProduct)}
+				onFav={product => addToFav(product)}
+				onRemove={product => removeFromFavorites(product)}
+				key={uniqid()}
+				isLoading={isLoading}
+				isFavorite={favProducts.findIndex(fav => fav.id === fProduct.id) >= 0}
+			/>
+		));
+	};
 	return (
-		<div className='search-block content p-40 '>
-			<div className='d-flex justify-between align-center mb-40'>
+		<div className='p-30'>
+			<div className='d-flex justify-between align-center mt-20 mb-20 pl-40 pr-40'>
 				{searchValue ? (
 					<h2>Поиск по запросу: {searchValue}</h2>
 				) : (
@@ -27,20 +41,7 @@ export default function Home({
 				/>
 			</div>
 
-			<div className='goods d-flex justify-center'>
-				{filteredProducts.map(fProduct => (
-					<Card
-						data={fProduct}
-						onPlus={() => addToCart(fProduct)}
-						onFav={favProduct => addToFav(favProduct)}
-						onRemove={product => removeFromFavorites(product)}
-						key={uniqid()}
-						isFavorite={
-							favProducts.findIndex(fav => fav.id === fProduct.id) >= 0
-						}
-					/>
-				))}
-			</div>
+			<div className='goods d-flex justify-center'>{renderItems()}</div>
 		</div>
 	);
 }

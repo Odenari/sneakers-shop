@@ -134,6 +134,16 @@ export const App = () => {
 							/>
 						}
 					/>
+					<Route
+						path='favorites/'
+						element={
+							<InFavorite
+								data={favProducts}
+								addToCart={addToCart}
+								removeFromFavorites={removeFromFavorites}
+							/>
+						}
+					/>
 				</Routes>
 			</main>
 		</div>
